@@ -63,7 +63,7 @@
                             Payz Admin
                         </small>
                     </a>
-                </div> 
+                </div>
             </div><!-- /.navbar-container -->
         </div>
 
@@ -82,7 +82,7 @@
                     } catch (e) {
                     }
                 </script>
- 
+
                 <?php $this->load->view('admincp/widget/menu');?>
 
                 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -96,15 +96,19 @@
                          <?php if ($this->router->fetch_class() == "admincp"): ?>
                             <?php if ($this->router->fetch_method() == "index"): ?>
                                <?php $this->load->view('admincp/home');?>
-                            <?php endif; ?> 
+                            <?php endif; ?>
                             <?php if ($this->router->fetch_method() == "listpost"): ?>
                                <?php $this->load->view('admincp/listpost');?>
-                            <?php endif; ?> 
+                            <?php endif; ?>
                             <?php if ($this->router->fetch_method() == "addpost"): ?>
                                <?php $this->load->view('admincp/addpost');?>
-                            <?php endif; ?> 
+                            <?php endif; ?>
+							<?php if ($this->router->fetch_method() == "order_details"): ?>
+                               <?php $this->load->view('admincp/order_details');?>
+                            <?php endif; ?>
+
                         <?php endif; ?>
-                        
+
                     </div><!-- /.page-content -->
                 </div>
             </div><!-- /.main-content -->
@@ -397,5 +401,6 @@
 
                     })
         </script>
+ 
     </body>
 </html>

@@ -126,6 +126,10 @@
 				<?php if ($this->router->fetch_method() == "post"): ?>
                     <?php $this->load->view('post');?>
                 <?php endif; ?>
+				<?php if ($this->router->fetch_method() == "updateinfo"): ?>
+                    <?php $this->load->view('updateinfo');?>
+                <?php endif; ?>
+
             <?php endif; ?>
 
         </div>

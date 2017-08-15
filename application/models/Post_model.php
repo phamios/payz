@@ -29,6 +29,16 @@ class Post_model extends CI_Model {
         }
 	}
 
+	public function getdetails($id  = null){
+		$this->db->where('id', $id);
+		$query = $this->db->get($this->db_post);
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		} else {
+			return 0;
+		}
+	}
+
 	public function listallpost(){
 		$this->db->order_by('id', "desc");
         $query = $this->db->get($this->db_post);

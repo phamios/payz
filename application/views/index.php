@@ -30,8 +30,8 @@
                         <div class="target_group__item target_group__item-occupation"><strong class="target_group__name">Nghề nghiệp</strong><span class="target_group__desc">Người có thu nhập ổn định</span>
                         </div>
                     </div>
-                    <div class="target_group__action"><a class="btn btn-success-outline btn-lg scrolltoelem " data-scrollto="@form" href="https://payz.vn/#hero">Đăng ký vay</a>
-                    </div>
+
+                    
                 </div>
             </div>
             <div class="col-md-6">

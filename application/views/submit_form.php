@@ -12,7 +12,7 @@
                             <div class="sliders sliders-top">
                                 <a class="sliders__minus" role="sliderAmountMinus" href="#">–</a>
                                 <a class="sliders__plus" role="sliderAmountPlus" href="#">+</a>
-                                <span class="sliders__title">Tôi cần vay 
+                                <span class="sliders__title">Tôi cần vay
                                     <strong class="sliders__value" role="needAmount">2.000.000 </strong>VND</span>
                                 <input role="amountSlider" data-slider-value="2000000" data-min="0" data-max="100" type="hidden" value="2000000" name="application[amount]" id="application_amount" style="display: none;" data-value="2000000">
                                 <input role="amountSliderMove" type="hidden" name="application[credit_limit_slider_move]" id="application_credit_limit_slider_move">
@@ -77,7 +77,7 @@
                             <p class="hero_baner__desc">làm theo hướng dẫn. Hồ sơ của bạn sẽ được duyệt ngay!</p>
                         </div>
                     </div>
-                    <a data-modal="true" class="hero_baner__btn" role="bannerMain" data-remote="true" href="https://payz.vn/clients/auth/sign_in">Đăng ký Vay lại</a>
+                    <a data-modal="false" class="hero_baner__btn" role="bannerMain" data-remote="true" href="#">Đăng ký Vay lại</a>
                 </div>
             </div>
         </div>
@@ -116,17 +116,17 @@
             $totalpay = document.getElementById('calcTotal').innerHTML;
             var postData = ['amount'=>$amount,'duedate'=>$duedate,'totapay'=>$totalpay];
             alert(postData);
-            $.ajax({  
-                    type: "POST",  
-                    url: "<?php echo site_url('home/rentsubmit');?>",  
-                    data: postData,  
+            $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('home/rentsubmit');?>",
+                    data: postData,
                     async: false,
                     success: function(data){
                        console.log('success');
                     }
              });
-            
-            
+
+
         });
     });
 </script>-->

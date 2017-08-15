@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 0);
+ini_set('display_errors',0);
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
@@ -25,6 +25,7 @@ class Home extends CI_Controller {
 		$tmp = explode('-', $idpost);
 	    $id = end($tmp);
 	    $getID = explode('.', $id);
+		$data['menus'] = $this->post_model->listmenupost();
 		$data['contents'] = $this->post_model->getdetails($getID[0]);
 		$this->load->view('home',$data);
 	}
@@ -51,7 +52,11 @@ class Home extends CI_Controller {
             $this->load->model('user_model');
             $id = $this->user_model->insertRent(str_replace(' ', '', $phone),$amount,$rentday,$duedate,$totalpay,$fullname);
             if($id <> 0) {
-                redirect('home/updateinfo'.md5($id));
+				$session_user = array(
+					'renter_id' => $id,
+				);
+				$this->session->set_userdata($session_user);
+                redirect('home/updateinfo/'.$id.'-'.md5($id));
             } else {
                 ?>
                 <script type="text/javascript">
@@ -65,9 +70,37 @@ class Home extends CI_Controller {
         }
     }
 
+	public function updateinfo($token=null){
+			$id = explode('-', $token);
+			if($id[1] == md5($id[0])){
+				if(isset($_REQUEST['finishCommit'])){
+					$cmt= $this->input->post('application[personalnumber]',true);
+					$city = $this->input->post('personalcity',true);
+					$strees = $this->input->post('application[living_street]',true);
+					$numberhouse = $this->input->post('application[living_house_number]',true);
+					$canho = $this->input->post('application[living_apartment_number]',true);
+					$birthdate = $this->input->post('birthdayuser',true);
+					$sex = $this->input->post('sex',true);
+					$email = $this->input->post('email',true);
+
+					$useraddress = $canho.', '.$numberhouse.', '.$strees.', '.$city;
+					$this->load->model('user_model');
+					$this->user_model->updateOrder($id[0],$cmt,$birthdate,$sex,$email,$useraddress);
+					redirect("home/index");
+				}
+				$data['menus'] = $this->post_model->listmenupost();
+				$data['token'] = $token;
+		        $this->load->view('home',$data);
+			} else {
+
+				redirect('home/index/false/'.md5(date("d-m-Y h:m:s")).''.md5($token).md5(md5(date("d-m-Y h:m:s")).''.md5($token)));
+			}
+	}
+
 
     public function login(){
-        $this->load->view('home');
+		$data['menus'] = $this->post_model->listmenupost();
+        $this->load->view('home',$data);
     }
 
 

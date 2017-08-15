@@ -19,9 +19,21 @@ class Admincp extends CI_Controller {
         if ($this->session->userdata('user_id') == null) {
             redirect('admincp/login');
         } else {
-            $this->load->view('admincp/main');
+			$this->load->model('user_model');
+			$data['listorders'] = $this->user_model->listorder();
+            $this->load->view('admincp/main',$data);
         }
     }
+
+	public function order_details($id=null){
+		if ($this->session->userdata('user_id') == null) {
+			redirect('admincp/login');
+		} else {
+			$this->load->model('user_model');
+			$data['orderdetails'] = $this->user_model->details($id);
+			$this->load->view('admincp/main',$data);
+		}
+	}
 
     public function login() {
         if ($this->session->userdata('user_id') == null) {
@@ -54,6 +66,8 @@ class Admincp extends CI_Controller {
             $this->load->view('admincp/main',$data);
         }
     }
+
+
 
     public function addpost(){
         if ($this->session->userdata('user_id') == null) {
